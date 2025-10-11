@@ -25,14 +25,19 @@ main().then(() => {
 
 }).catch(err => {
     console.log("MongoDB connection error:", err);
-    process.exit(1);
+    // Don't exit, let the app continue
 })
 
 
 
 async function main() {
-    await mongoose.connect(dbURL);
-    
+    try {
+        await mongoose.connect(dbURL);
+        console.log("MongoDB connected successfully");
+    } catch (error) {
+        console.log("MongoDB connection failed:", error.message);
+        throw error;
+    }
 }
 
 app.set("view engine", "ejs");
@@ -99,6 +104,24 @@ app.use("/",userRouter)
 // Root route must be defined BEFORE the catch-all route
 app.get("/", (req, res) => {
     res.redirect("/listings");
+});
+
+// Test route to debug MongoDB connection
+app.get("/test", async (req, res) => {
+    try {
+        const Listing = require("./models/listing");
+        const count = await Listing.countDocuments();
+        res.json({ 
+            status: "success", 
+            message: "MongoDB connection working", 
+            listingsCount: count 
+        });
+    } catch (error) {
+        res.json({ 
+            status: "error", 
+            message: error.message 
+        });
+    }
 });
 
 app.all(/.*/, (req, res, next) => {
