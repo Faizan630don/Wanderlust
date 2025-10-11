@@ -5,7 +5,7 @@ if(process.env.NODE_ENV !== "production"){
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/wanderlust";
 const path = require("path")
 const methodOverride = require("method-override")
 const ejsMate = require("ejs-mate")
@@ -107,10 +107,11 @@ app.use((err, req, res, next) => {
     // res.status(statusCode).send(message);
 })
 app.get("/", (req, res) => {
-    res.render("/listings");
+    res.redirect("/listings");
 });
-app.listen(8080, () => {
-    console.log("Server is listening to port 8080")
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is listening to port ${PORT}`)
 });
 
 
