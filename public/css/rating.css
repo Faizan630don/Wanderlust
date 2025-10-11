@@ -1,0 +1,93 @@
+/* Star Rating System */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    user-select: none;
+}
+
+/* Hover effect - when you hover over a star, highlight it and all stars to the right (which appear to the left due to row-reverse) */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+}
+
+/* When a star is selected, highlight it and all stars to the right */
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffc107;
+}
+
+/* Make sure the checked star itself is also highlighted */
+.star-rating input[type="radio"]:checked + label {
+    color: #ffc107;
+}
+
+/* Alternative: Using Unicode stars */
+.star-rating-unicode {
+    display: flex;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.star-rating-unicode input[type="radio"] {
+    display: none;
+}
+
+.star-rating-unicode label {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    color: #ddd;
+}
+
+.star-rating-unicode label:hover,
+.star-rating-unicode label:hover ~ label,
+.star-rating-unicode input[type="radio"]:checked ~ label {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+/* Rating display for reviews */
+.rating-display {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.rating-display .star {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+
+.rating-display .star.empty {
+    color: #ddd;
+}
+
+/* Form styling */
+.rating-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.rating-form legend {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 15px;
+}

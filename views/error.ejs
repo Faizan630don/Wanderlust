@@ -1,0 +1,8 @@
+<% layout("/layouts/boilerplate")%>
+<br><br><br><br><br><br><br><br><br>
+<div class="alert alert-danger col-6 offset-3 " role="alert">
+    <h4>Error <%= typeof statusCode !== 'undefined' ? statusCode : 500 %></h4>
+    <p><%= typeof message !== 'undefined' ? message : "Something went wrong!" %></p>
+    <hr>
+    <p class="mb-0">Please try again or contact support if the problem persists.</p>
+  </div>

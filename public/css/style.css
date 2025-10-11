@@ -1,0 +1,490 @@
+/* Global theme */
+:root {
+   /* Accent (your coral tones) */
+   --accent-50: #ffe7ec;
+   --accent-100: #ffc2cf;
+   --accent-200: #ff9cb1;
+   --accent-300: #ff7693;
+   --accent-400: #ff5f82;
+   --accent-500: #ff385c; /* main accent */
+   --accent-600: #e22b4e;
+   --accent-700: #c31f41;
+   --accent-800: #a31335;
+   --accent-900: #820b29;
+ 
+   /* Ocean luxury base */
+   --bg-50: #f8fafc;      /* light ocean mist */
+   --bg-100: #e2e8f0;     /* pale blue-gray */
+   --bg-500: #0f172a;     /* deep navy ocean */
+   --bg-700: #0a1120;     /* darker for footer */
+   --text-100: #f8fafc;   /* bright text on dark */
+   --text-900: #0a0a0a;   /* dark text on light */
+   --card-bg: #ffffff0d;  /* subtle glass-like cards */
+   --shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: transparent;
+  
+}
+
+.container {
+    flex: 1;
+}
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+.fa-compass {
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+.nav-link:hover {
+    color: var(--accent-500) !important;
+}
+
+/* Footer */
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+    
+}
+
+.f-info-links, .f-info-socials,
+.f-info-brands {
+    font-size: 1.2rem;
+    margin-right: 2rem  ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+.f-info {
+    text-align: center ;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+/* Cards */
+.card:hover {
+    border-color:black;
+    transform: scale(1.04);
+    transition: 0.3s;
+
+}
+
+.listing-card {
+    box-shadow: 0 0 10px rgba(255, 56, 92, 0.18);
+  transition: box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+    border-radius: 1.5rem !important; 
+
+}
+
+.card-img-top {
+    border-radius: 1.5rem !important; 
+    width: 100% !important ;
+    object-fit: cover  !important;
+}
+
+.card-body{
+    padding: 0 !important; 
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+/* card effect */
+.listing-card:hover {
+    transform: scale(1.04);
+    transition: 0.5s;
+    border: none !important;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 48px rgba(255, 56, 92, 0.35);
+}
+
+/* Show page  */
+.show-img {
+    height: 40vh;
+    width: 60vh !important;
+    object-fit: cover;
+    border-radius: 1.5rem !important;
+    transition: all 0.3s ease;
+}
+
+/* Image hover effect */
+.listing-card:hover .show-img {
+    box-shadow: 0 0 30px rgba(255, 56, 92, 0.35);
+    border: 2px solid rgba(255, 56, 92, 0.25);
+}
+
+.alert {
+    text-align: center;
+    display: flex;
+    text-decoration: solid;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-outline-primary:hover {
+    background-image: linear-gradient(135deg,
+        var(--accent-500),
+        var(--accent-400)
+        
+    );
+    background-size: 200% auto;
+    color: #12151a !important;
+    border: none !important;
+    box-shadow: 0 6px 20px rgba(212,175,55,0.35);
+    animation: gradientShift 10s ease infinite;
+}
+.btn-outline-primary {
+    color: var(--lux-gold-500) !important;
+    border-color: var(--lux-gold-500) !important;
+}
+
+/* Ensure text/icon remains visible on hover */
+.btn-outline-primary:hover,
+.btn-primary:hover {
+    color: #12151a !important;
+}
+.btn-outline-primary:hover i,
+.btn-primary:hover i {
+    color: #12151a !important;
+}
+
+/* Inputs focus */
+.form-control:focus {
+    border-color: var(--accent-300) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 56, 92, 0.15) !important;
+}
+
+/* ===================== */
+/* Animated background   */
+/* ===================== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(1200px 600px at 20% 10%, rgba(212,175,55,0.25) 0%, transparent 60%),
+                radial-gradient(1000px 500px at 80% 20%, rgba(255,179,71,0.18) 0%, transparent 65%),
+                radial-gradient(900px 500px at 30% 90%, rgba(233,177,179,0.18) 0%, transparent 60%),
+                linear-gradient(180deg, var(--lux-ink-800) 0%, var(--lux-navy-700) 100%);
+    filter: saturate(1.05) brightness(0.95);
+    animation: wanderlustGradient 28s ease-in-out infinite alternate;
+}
+
+@keyframes wanderlustGradient {
+    0% {
+        background-position: 0% 0%, 100% 0%, 0% 100%, 50% 50%;
+        transform: translateZ(0);
+    }
+    50% {
+        background-position: 18% 8%, 82% 12%, 12% 88%, 50% 50%;
+    }
+    100% {
+        background-position: 28% 18%, 72% 6%, 22% 82%, 50% 50%;
+    }
+}
+
+/* Subtle grain for depth */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.25;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+}
+
+/* ===================== */
+/* RESPONSIVE DESIGN     */
+/* ===================== */
+
+/* Mobile First Approach - Base styles for mobile */
+
+/* Mobile devices only (phones, 576px and down) */
+@media (max-width: 575.98px) {
+    /* Navbar adjustments */
+    .navbar {
+        height: auto;
+        padding: 0.5rem 0;
+    }
+    
+    .fa-compass {
+        font-size: 1.5rem;
+    }
+    
+    /* Search form mobile optimization */
+    .search-inp {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-search {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-search i {
+        margin-right: 0.3rem;
+    }
+    
+    /* Container padding */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Cards mobile optimization */
+    .listing-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-img-top {
+        height: 15rem !important;
+    }
+    
+    /* Show page mobile layout */
+    .show-img {
+        height: 25vh !important;
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    
+    /* Mobile overrides for show page layout - only on mobile */
+    .col-8.offset-3 {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Mobile overrides for form layouts - only on mobile */
+    .col-8.offset-2 {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .col-6.offset-3 {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Ensure login section positioning is correct on mobile */
+    .alert.alert-info {
+        text-align: center !important;
+    }
+    
+    .alert.alert-info .d-flex {
+        justify-content: center !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    .alert.alert-info .btn {
+        width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Filter section mobile */
+    #filters {
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+    }
+    
+    .filter {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .filter p {
+        font-size: 0.6rem;
+    }
+    
+    .taxToggle {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    /* Footer mobile */
+    .f-info {
+        height: auto;
+        padding: 1rem 0;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .f-info-links, .f-info-socials, .f-info-brands {
+        font-size: 1rem;
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    /* Map mobile */
+    #map {
+        height: 300px !important;
+    }
+    
+    /* Review cards mobile */
+    .card.col-5 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Form adjustments */
+    .form-control {
+        font-size: 1rem; /* Prevents zoom on iOS */
+    }
+    
+    /* Button adjustments */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Alert adjustments */
+    .alert {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) - minimal changes */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .search-inp {
+        width: 200px;
+    }
+    
+    .card-img-top {
+        height: 18rem !important;
+    }
+    
+    .show-img {
+        height: 30vh !important;
+        width: 100% !important;
+    }
+    
+    #map {
+        height: 350px !important;
+    }
+    
+    .card.col-5 {
+        flex: 0 0 48% !important;
+        max-width: 48% !important;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+    .navbar {
+        height: 3rem;
+    }
+    
+    .fa-compass {
+        font-size: 1.2rem;
+    }
+    
+    .show-img {
+        height: 20vh !important;
+    }
+    
+    #map {
+        height: 250px !important;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card-img-top {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem;
+    }
+    
+    .filter {
+        padding: 0.5rem 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .listing-card:hover {
+        transform: none;
+        box-shadow: 0 0 10px rgba(255, 56, 92, 0.18);
+    }
+    
+    .card:hover {
+        transform: none;
+        border-color: initial;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar, .f-info, #filters, .btn {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .listing-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
