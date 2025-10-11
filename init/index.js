@@ -2,24 +2,30 @@ const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
-main().then(() => {
-    console.log("Connected to DB");
-
-}).catch(err => {
-    console.log(err);
-})
+const dbURL = process.env.ATLAS_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
 async function main() {
-    await mongoose.connect(MONGO_URL)
+    await mongoose.connect(dbURL);
+    console.log("Connected to DB");
     
-}
-const initDB = async () => {
+    // Clear existing data
     await Listing.deleteMany({});
-    initData.data =  initData.data.map((obj) => ({...obj, owner: "68dbb683d43c627687dcfe18" }))
-    await Listing.insertMany(initData.data);
-    console.log("Data was initialised") 
-};
+    console.log("Cleared existing listings");
+    
+    // Insert sample data with owner ID
+    const sampleData = initData.data.map((obj) => ({
+        ...obj, 
+        owner: "68dbb683d43c627687dcfe18" // You'll need to replace this with a real user ID
+    }));
+    
+    await Listing.insertMany(sampleData);
+    console.log("Sample data inserted successfully");
+    
+    // Close connection
+    await mongoose.connection.close();
+    console.log("Database connection closed");
+}
 
-initDB();
+main().catch(err => {
+    console.log(err);
+});

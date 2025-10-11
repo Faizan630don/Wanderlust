@@ -5,7 +5,7 @@ if(process.env.NODE_ENV !== "production"){
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
-const MONGO_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/wanderlust";
+const dbURL = process.env.ATLAS_URL || "mongodb://127.0.0.1:27017/wanderlust";
 const path = require("path")
 const methodOverride = require("method-override")
 const ejsMate = require("ejs-mate")
@@ -24,13 +24,14 @@ main().then(() => {
     console.log("Connected to DB");
 
 }).catch(err => {
-    console.log(err);
+    console.log("MongoDB connection error:", err);
+    process.exit(1);
 })
 
 
 
 async function main() {
-    await mongoose.connect(MONGO_URL)
+    await mongoose.connect(dbURL);
     
 }
 
