@@ -51,13 +51,14 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 
 const sessionOptions = {
-    secret: "mysupersecretstring",
+    secret: process.env.SESSION_SECRET || "mysupersecretstring-dev-only-change-in-production",
     resave: false,
     saveUninitialized: true,
     cookie: {
         expire: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // HTTPS only in production
     },
 }
 // app.get("/", (req, res) => {

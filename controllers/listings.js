@@ -26,21 +26,39 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;
-   const listing = await Listing.findById(id)
-   .populate( {
-    path:"reviews",
-    populate: {
-        path: "author",
-    },
-})  
-    .populate("owner")
+    
+    // Validate MongoDB ObjectId format
+    if (!id || !require("mongoose").Types.ObjectId.isValid(id)) {
+        req.flash("error", "Invalid listing ID!");
+        return res.redirect("/listings");
+    }
+    
+    try {
+        const listing = await Listing.findById(id)
+            .populate({
+                path: "reviews",
+                populate: {
+                    path: "author",
+                    select: "username" // Only select needed fields
+                }
+            })
+            .populate({
+                path: "owner",
+                select: "username" // Only select needed fields
+            });
 
-   if(!listing) {
-    req.flash("error" , "Listing You requested for does not Exist!");
-    return res.redirect("/listings")
-   }console.log(listing);
+        if(!listing) {
+            req.flash("error", "Listing You requested for does not Exist!");
+            return res.redirect("/listings");
+        }
 
-   res.render("listings/show", {listing});
+        console.log(listing);
+        res.render("listings/show", {listing});
+    } catch (error) {
+        console.error("Error fetching listing:", error);
+        req.flash("error", "Error loading listing. Please try again.");
+        res.redirect("/listings");
+    }
 };
 module.exports.createListing = async (req, res, next)=> {
     
