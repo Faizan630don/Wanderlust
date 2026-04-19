@@ -39,7 +39,7 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./routes/user.js");
-const { console } = require("inspector");
+
 
 // Start MongoDB connection
 main().catch(err => {

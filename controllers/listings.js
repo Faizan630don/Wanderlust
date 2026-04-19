@@ -148,10 +148,12 @@ module.exports.updateListing = async(req, res) => {
         console.error('Failed to update geometry for listing', id, e);
     }
 
-   if(typeof req.file !=="undefined"){
-    let url = req.file.path;
+   if(typeof req.file !== "undefined"){
     let filename = req.file.filename;
-    listing.image = { url, filename};
+    let url = (req.file.path && req.file.path.startsWith('http'))
+        ? req.file.path
+        : `/uploads/${filename}`;
+    listing.image = { url, filename };
     await listing.save();
    }
    
